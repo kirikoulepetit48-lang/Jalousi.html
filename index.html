@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qui te jalouse - JORA</title>
+<style>
+body{margin:0;background:linear-gradient(135deg,#ffaa00,#ff4400);min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Arial;padding:15px}
+.card{background:#fff;color:#000;padding:30px;border-radius:30px;max-width:400px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+input{width:85%;padding:18px;border-radius:50px;border:2px solid #ffe0b0;background:#fff8f0;text-align:center;font-size:18px;font-weight:bold;outline:none}
+button{width:90%;padding:18px;border:none;border-radius:50px;background:#000;color:#fff;font-weight:900;font-size:18px;margin-top:15px;cursor:pointer}
+.danger{background:#000;color:#fff;padding:25px;border-radius:20px;margin-top:20px;text-align:left;animation:pop 0.6s;border:1px solid #ff4400}
+@keyframes pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
+.eye{font-size:60px;text-align:center}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>👁️ QUI TE JALOUSE ?</h1>
+<p style="color:#666">JORA détecte les yeux sur toi</p>
+<input id="nom" placeholder="Ton prénom">
+<button onclick="detect()">👁️ SCANNER LES JALOUX</button>
+<div id="res"></div>
+</div>
+<script>
+function detect(){
+let n=document.getElementById('nom').value.trim();
+if(!n)return alert('Ton prénom !');
+document.getElementById('res').innerHTML='<br>👁️ Scan de ton entourage...<br>📱 Analyse des vues de story...';
+setTimeout(()=>{
+let b=n.length;
+let nb= (b*7)+ (b%10);
+let types=["Tes amis proches","Ta famille","Tes ex","Tes collègues de classe/travail","Les gens de ton quartier"][b%5];
+let raison=["Ton style","Ta réussite future","Parce que tu es beau/belle","Parce que tu ne demandes rien à personne"][b%4];
+document.getElementById('res').innerHTML=`
+<div class=danger>
+<div class=eye>👁️</div>
+<h2 style=text-align:center;margin:5px 0;color:#ff4400>${nb} PERSONNES</h2>
+<p style=text-align:center>te jalousent en secret, ${n}</p>
+<hr style=border-color:#222>
+<p>😈 <b>Qui ?</b> Principalement: ${types}</p>
+<p>🔥 <b>Pourquoi ?</b> ${raison}</p>
+<p>⚠️ <b>Attention:</b> ${2+b%4} personnes font semblant de t'aimer mais parlent derrière toi.</p>
+<p style=color:#ff4400;font-weight:bold>💬 Conseil JORA: Ne montre plus tes projets à tout le monde. Deviens discret jusqu'à ce que ton succès fasse du bruit.</p>
+<br>
+<button style=background:#ff4400;color:#fff;width:100% onclick=share()>😡 Révéler mes jaloux</button>
+</div>
+`;
+window.txt=`👁️ JORA: Moi ${n} j'ai ${nb} personnes qui me jalousent ! Dont ${2+b%4} faux amis. Et toi ? Teste ici: https://kirikoulepetit48-lang.github.io/Jalousie.html`;
+},2500);
+}
+function share(){window.open('https://wa.me/?text='+encodeURIComponent(window.txt),'_blank')}
+</script>
+</body>
+  </html>
